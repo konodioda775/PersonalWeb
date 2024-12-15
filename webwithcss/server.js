@@ -6,8 +6,27 @@ const path = require('path'); // Замыг шийдвэрлэх модуль
 
 const app = express(); // `app` хувьсагчийг зөвхөн нэг удаа зарлах
 
+// Серверээ ажиллуулах
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Сервер ${PORT} порт дээр ажиллаж байна`);
+});
+
 // Зөвшөөрөгдсөн гарал үүсэлүүд
 const allowedOrigins = ['https://perweb-lnao.onrender.com'];
+
+// Статик файлуудыг serve хийх
+app.use(express.static(path.join(__dirname))); // Үндсэн фолдерыг serve хийх
+
+// Root route - үндсэн HTML хуудас
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Серверийг ажиллуулах
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -58,8 +77,3 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); // index.html серверийн үндсэн хавтсанд байгаа гэж үзнэ
 });
 
-// Серверээ ажиллуулах
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Сервер ${PORT} порт дээр ажиллаж байна`);
-});
