@@ -7,7 +7,7 @@ const path = require('path'); // Замыг шийдвэрлэх модуль
 const app = express(); // `app` хувьсагчийг зөвхөн нэг удаа зарлах
 
 // Серверээ ажиллуулах
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Сервер ${PORT} порт дээр ажиллаж байна`);
 });
