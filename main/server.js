@@ -5,8 +5,6 @@ const cors = require('cors'); // CORS модулийг импортлох
 
 const app = express(); // `app` хувьсагчийг зөвхөн нэг удаа зарлах
 
-const cors = require('cors');
-
 
 // CORS тохируулах
 
