@@ -4,122 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f0f8ff;
-            color: #333;
-        }
-
-        .weather {
-            margin-top: 20px;
-        }
-    </style>
+    <title>PerWeb v0.2</title>
+    <link rel="stylesheet" href="index_main.css">
+    <link rel="stylesheet" href="header.css">
+    <script defer src="index_main.js"></script>
 </head>
 
 <body>
-    <h1>Цаг агаарын мэдээлэл</h1>
-    <label for="city">Хотын нэр:</label>
-    <input type="text" id="city" placeholder="Жишээ: Ulaanbaatar">
-    <button onclick="getWeather()">Мэдээлэл авах</button>
-
-    <label for="email">Gmail хаяг:</label>
-    <input type="email" id="email" placeholder="Жишээ: user@gmail.com">
-    <button onclick="registerEmail()">Бүртгүүлэх</button>
-
-    <div class="weather" id="weatherInfo">
-        <!-- Цаг агаарын мэдээлэл энд харагдана -->
+    <div class="top_head">
+        <div class="header">
+            <div class="header_name">
+                <a href="index.html" class="hname">PerWeb</a>
+            </div>
+            <div class="header_side">
+                <button class="header_menu" onclick="menu_extends()" >Цэс</button>
+                <div class="header_login">Нэвтрэх/Бүртгүүлэх</div>
+            </div>
+        </div>
+        <hr>
+        <div class="menu_extend">
+        </div>
     </div>
-
-    <button onclick="sendEmail()" style="margin-top: 20px;">Gmail рүү мэдээлэл илгээх</button>
-
-    <script>
-        const registeredEmails = [];
-        let currentWeatherData = null;
-
-        async function getWeather() {
-            const city = document.getElementById('city').value;
-            const API_KEY = "3b9c68fcd2427545a02bc9c44922af50"; // Таны OpenWeatherMap API түлхүүр
-
-            if (!city) {
-                alert("Хотын нэрээ оруулна уу.");
-                return;
-            }
-
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=mn`;
-
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error("Мэдээлэл олдсонгүй. Хотын нэрээ шалгана уу.");
-                }
-
-                const data = await response.json();
-                currentWeatherData = data;
-
-                document.getElementById('weatherInfo').innerHTML = `
-                    <h2>Хот: ${data.name}</h2>
-                    <p>Температур: ${data.main.temp}°C</p>
-                    <p>Шуудан: ${data.weather[0].description}</p>
-                    <p>Салхины хурд: ${data.wind.speed} м/с</p>
-                `;
-            } catch (error) {
-                document.getElementById('weatherInfo').innerHTML = `<p style="color: red;">Алдаа: ${error.message}</p>`;
-            }
-        }
-
-        function registerEmail() {
-            const email = document.getElementById('email').value;
-
-            if (!email || !/^[^\s@]+@gmail\.com$/.test(email)) {
-                alert("Хүчинтэй Gmail хаяг оруулна уу.");
-                return;
-            }
-
-            if (registeredEmails.includes(email)) {
-                alert("Энэ Gmail хаяг аль хэдийн бүртгэгдсэн байна.");
-                return;
-            }
-
-            registeredEmails.push(email);
-            alert("Gmail хаяг амжилттай бүртгэгдлээ!");
-        }
-
-        function sendEmail() {
-            if (!currentWeatherData) {
-                alert("Эхлээд цаг агаарын мэдээлэл авна уу.");
-                return;
-            }
-
-            registeredEmails.forEach(email => {
-                fetch('https://perweb-lnao.onrender.com/send-email', { // 'send-email'-ийг зөв оруулсан
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        subject: `Цаг агаарын мэдээлэл: ${currentWeatherData.name}`,
-                        text: `Энэ өдрийн мэнд\nХот: ${currentWeatherData.name}\nТемператур: ${currentWeatherData.main.temp}°C\nТэнгэрийн таалал: ${currentWeatherData.weather[0].description}\nСалхины хурд: ${currentWeatherData.wind.speed} м/с`,
-                    }),
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Серверээс алдаа буцаж ирлээ");
-                        }
-                        return response.text();
-                    })
-                    .then(data => console.log("Амжилттай:", data))
-                    .catch(error => console.error('Алдаа:', error));
-            });
-
-            alert("Бүртгэгдсэн Gmail хаяг руу мэдээлэл илгээгдлээ!");
-        }
-
-    </script>
+    
+    <div class="index_main">
+        <div class="topic">Сайн уу?</div>
+        <div class="developing">
+            <div class="dev_p">Веб хөгжүүлэгдэж байна</div>
+            <svg class="loading" width="200" height="80">
+                <circle class="dot1" cx="10" cy="40" r="6"></circle>
+                <circle class="dot2" cx="25" cy="40" r="6"></circle>
+                <circle class="dot3" cx="40" cy="40" r="6"></circle>
+            </svg>
+        </div>
+    </div>
 </body>
 
 </html>
