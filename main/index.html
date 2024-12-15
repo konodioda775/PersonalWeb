@@ -103,7 +103,7 @@
                     body: JSON.stringify({
                         email: email,
                         subject: `Цаг агаарын мэдээлэл: ${currentWeatherData.name}`,
-                        text: `Энэ өдрийн мэнд\nХот: ${currentWeatherData.name}\nТемператур: ${currentWeatherData.main.temp}°C\nШуудан: ${currentWeatherData.weather[0].description}\nСалхины хурд: ${currentWeatherData.wind.speed} м/с`,
+                        text: `Энэ өдрийн мэнд\nХот: ${currentWeatherData.name}\nТемператур: ${currentWeatherData.main.temp}°C\nТэнгэрийн таалал: ${currentWeatherData.weather[0].description}\nСалхины хурд: ${currentWeatherData.wind.speed} м/с`,
                     }),
                 })
                     .then(response => {
