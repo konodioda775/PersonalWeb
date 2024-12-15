@@ -7,7 +7,7 @@ const path = require('path'); // Замыг шийдвэрлэх модуль
 const app = express(); // `app` хувьсагчийг зөвхөн нэг удаа зарлах
 
 // Зөвшөөрөгдсөн гарал үүсэлүүд
-const allowedOrigins = ['https://perweb-lnao.onrender.com', 'http://localhost:3000'];
+const allowedOrigins = ['https://perweb-lnao.onrender.com'];
 
 app.use(cors({
     origin: function (origin, callback) {
