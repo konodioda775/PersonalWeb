@@ -6,8 +6,19 @@ const path = require('path'); // Замыг шийдвэрлэх модуль
 
 const app = express(); // `app` хувьсагчийг зөвхөн нэг удаа зарлах
 
-// CORS тохируулах
-app.use(cors());
+// Зөвшөөрөгдсөн гарал үүсэлүүд
+const allowedOrigins = ['https://perweb-lnao.onrender.com', 'http://localhost:3000'];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.error(`CORS бодлого: Зөвшөөрөгдөөгүй гарал үүсэл -> ${origin}`);
+            callback(new Error('CORS бодлого зөрчигдсөн: Зөвшөөрөгдөөгүй гарал үүсэл'));
+        }
+    }
+}));
 
 // Body Parser тохируулах
 app.use(bodyParser.json());
