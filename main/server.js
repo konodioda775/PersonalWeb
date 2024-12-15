@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors'); // CORS модулийг импортлох
+const path = require('path'); // Замыг шийдвэрлэх модуль
 
 const app = express(); // `app` хувьсагчийг зөвхөн нэг удаа зарлах
 
-
 // CORS тохируулах
+app.use(cors());
 
 // Body Parser тохируулах
 app.use(bodyParser.json());
@@ -43,7 +44,7 @@ app.post('/send-email', (req, res) => {
 
 // Root замд үндсэн HTML хуудсыг үзүүлэх
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html'); // Таны index.html серверийн үндсэн хавтсанд байгаа гэж үзнэ
+    res.sendFile(path.join(__dirname, 'index.html')); // index.html серверийн үндсэн хавтсанд байгаа гэж үзнэ
 });
 
 // Серверээ ажиллуулах
@@ -51,4 +52,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Сервер ${PORT} порт дээр ажиллаж байна`);
 });
-// test help
