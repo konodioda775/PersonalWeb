@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname))); // Үндсэн фолдерыг 
 
 // Root route - үндсэн HTML хуудас
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'menu/weather/weather.html'));
 });
 
 // Серверийг ажиллуулах
@@ -74,6 +74,6 @@ app.post('/send-email', (req, res) => {
 
 // Root замд үндсэн HTML хуудсыг үзүүлэх
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html')); // index.html серверийн үндсэн хавтсанд байгаа гэж үзнэ
+    res.sendFile(path.join(__dirname, 'menu/weather/weather.html')); // index.html серверийн үндсэн хавтсанд байгаа гэж үзнэ
 });
 
