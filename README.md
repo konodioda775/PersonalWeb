@@ -1,0 +1,1 @@
+Hi, I am a student from university, and I am just trying to create my own website. These repositories are just my hobby, and this is my first time using GitHub. If I make any mistakes, please let me know. I will try my best! :)

@@ -1,0 +1,40 @@
+.index_main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+    padding-top: 40px;
+    z-index: 0;
+}
+body{
+    background-color: azure;
+}
+.developing{
+    display: flex;
+    align-items: center;
+}
+.menu_extend .link:hover {
+    transform: scale(1.05);
+    font-weight: bold;
+}
+
+@keyframes dot{
+    0%{
+       transform: translateY(0); 
+    }
+    50%{
+        transform: translateY(-15px); 
+    }
+    100%{
+        transform: translateY(0px); 
+    }
+}
+.dot1{
+    animation: dot 1s linear infinite;
+}
+.dot2{
+    animation: dot 1s linear 0.25s infinite;
+}
+.dot3{
+    animation: dot 1s linear 0.45s infinite;
+}
